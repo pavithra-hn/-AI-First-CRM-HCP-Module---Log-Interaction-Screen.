@@ -1,4 +1,4 @@
-# AI-First CRM HCP Module — Log Interaction Screen
+# AI-First CRM HCP Module -Log Interaction Screen
 
 An AI-powered Customer Relationship Management (CRM) system for pharmaceutical field representatives, featuring a **Healthcare Professional (HCP) Module** with intelligent interaction logging.
 
