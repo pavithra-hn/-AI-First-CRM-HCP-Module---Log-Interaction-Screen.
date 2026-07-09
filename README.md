@@ -2,7 +2,7 @@
 
 An AI-powered Customer Relationship Management (CRM) system for pharmaceutical field representatives, featuring a **Healthcare Professional (HCP) Module** with intelligent interaction logging.
 
-![App Screenshot](./CRM%20HCP-Photoroom.png)
+<img src="./CRM%20HCP-Photoroom.png" alt="App Screenshot" width="600" />
 
 ## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/icons/star.svg" width="28" height="28" align="top" /> Features
 
