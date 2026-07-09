@@ -167,7 +167,7 @@ npm run dev
 ```
 React + Redux ──→ FastAPI ──→ LangGraph Agent ──→ Groq LLM
                      │               │
-                     └──→ PostgreSQL ←┘
+                     └─→ PostgreSQL ←┘
 ```
 
 ## <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/icons/file-text.svg" width="28" height="28" align="top" /> License
