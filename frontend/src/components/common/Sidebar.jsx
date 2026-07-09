@@ -1,5 +1,6 @@
 import React from 'react';
-import { FiHome, FiMessageSquare, FiUsers, FiActivity, FiSettings, FiZap } from 'react-icons/fi';
+import { FiHome, FiMessageSquare, FiUsers, FiActivity } from 'react-icons/fi';
+import logo from '../../assets/logo.png';
 
 const Sidebar = ({ activeTab, onTabChange }) => {
   const navItems = [
@@ -13,7 +14,7 @@ const Sidebar = ({ activeTab, onTabChange }) => {
     <aside className="sidebar">
       <div className="sidebar-logo">
         <div className="logo-icon">
-          <FiZap />
+          <img src={logo} alt="CRM HCP logo" className="logo-img" />
         </div>
         <div>
           <h1>CRM HCP</h1>
@@ -36,7 +37,7 @@ const Sidebar = ({ activeTab, onTabChange }) => {
 
       <div className="sidebar-footer">
         <p>AI-First CRM v1.0</p>
-        <p style={{ marginTop: '4px', opacity: 0.6 }}>Powered by LangGraph + Groq</p>
+        <p style={{ marginTop: '4px', opacity: 0.6 }}>HCP Engagement Platform</p>
       </div>
     </aside>
   );

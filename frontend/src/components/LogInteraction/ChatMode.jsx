@@ -73,7 +73,7 @@ const ChatMode = () => {
         {messages.map((msg, index) => (
           <div key={index} className={`chat-message ${msg.role}`}>
             <div className="chat-avatar">
-              {msg.role === 'user' ? <FiUser /> : <FiCpu />}
+              {msg.role === 'user' ? <FiUser /> : <span className="assistant-emoji">☸️</span>}
             </div>
             <div className="chat-bubble">
               {msg.toolUsed && (
@@ -90,7 +90,7 @@ const ChatMode = () => {
         {loading && (
           <div className="chat-message assistant">
             <div className="chat-avatar">
-              <FiCpu />
+              <span className="assistant-emoji">☸️</span>
             </div>
             <div className="chat-bubble">
               <div className="typing-indicator">
@@ -136,7 +136,7 @@ const ChatMode = () => {
         <textarea
           ref={inputRef}
           className="chat-input"
-          placeholder="Type your message... (e.g., 'Log a visit with Dr. Mitchell')"
+          placeholder="Type a message…"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}

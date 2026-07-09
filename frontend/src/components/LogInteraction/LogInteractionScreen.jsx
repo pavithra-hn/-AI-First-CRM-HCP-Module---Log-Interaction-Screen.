@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FiEdit3, FiList, FiActivity, FiCpu } from 'react-icons/fi';
+import { FiEdit3, FiList, FiActivity } from 'react-icons/fi';
 import FormMode from './FormMode';
 import ChatMode from './ChatMode';
 import InteractionList from './InteractionList';
@@ -12,11 +12,21 @@ const LogInteractionScreen = () => {
   const [showList, setShowList] = useState(false);
   const dispatch = useDispatch();
   const { editModalOpen, items: interactions } = useSelector((state) => state.interactions);
+  const listRef = useRef(null);
 
   useEffect(() => {
     dispatch(fetchInteractions());
     dispatch(fetchHCPs());
   }, [dispatch]);
+
+  // When the list is opened, scroll it into view so it's obvious it appeared.
+  useEffect(() => {
+    if (showList) {
+      requestAnimationFrame(() =>
+        listRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      );
+    }
+  }, [showList]);
 
   return (
     <div>
@@ -26,7 +36,7 @@ const LogInteractionScreen = () => {
         gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem',
       }}>
         <div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--heading-color)' }}>
             Log HCP Interaction
           </h1>
           <p style={{ fontSize: '0.875rem', color: 'var(--text-tertiary)', marginTop: 4 }}>
@@ -66,12 +76,8 @@ const LogInteractionScreen = () => {
         <div className="glass-card" style={{ position: 'sticky', top: '80px' }}>
           <div className="glass-card-header">
             <div>
-              <h3 className="glass-card-title"><FiCpu /> AI Assistant</h3>
+              <h3 className="glass-card-title"><span className="assistant-emoji">☸️</span> AI Assistant</h3>
               <div className="glass-card-subtitle">Log interaction via chat</div>
-            </div>
-            <div className="ai-status-pill">
-              <span className="live-dot" />
-              LangGraph + Groq
             </div>
           </div>
           <ChatMode />
@@ -80,7 +86,7 @@ const LogInteractionScreen = () => {
 
       {/* Interactions list (toggle) */}
       {showList && (
-        <div className="glass-card" style={{ marginTop: '1.5rem' }}>
+        <div ref={listRef} className="glass-card" style={{ marginTop: '1.5rem', scrollMarginTop: '80px' }}>
           <div className="glass-card-header">
             <h3 className="glass-card-title"><FiActivity /> Recent Interactions</h3>
             <span className="count-pill">{interactions.length} logged</span>

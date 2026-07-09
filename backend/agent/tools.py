@@ -16,6 +16,7 @@ from typing import Optional
 
 from langchain_core.tools import tool
 from langchain_groq import ChatGroq
+from sqlalchemy import func
 from dotenv import load_dotenv
 
 # Add parent directory to path for imports
@@ -243,9 +244,13 @@ def lookup_hcp(query: str) -> str:
     db = get_db_session()
     try:
         search_term = f"%{query}%"
+        # Full name ("Dr. Sarah Mitchell") spans first_name + last_name, so match
+        # the concatenated name as well as each individual column.
+        full_name = func.concat(HCP.first_name, " ", HCP.last_name)
         hcps = db.query(HCP).filter(
             HCP.first_name.ilike(search_term) |
             HCP.last_name.ilike(search_term) |
+            full_name.ilike(search_term) |
             HCP.specialty.ilike(search_term) |
             HCP.hospital.ilike(search_term) |
             HCP.territory.ilike(search_term) |

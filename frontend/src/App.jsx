@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
-import { FiBarChart2, FiUsers, FiTrendingUp } from 'react-icons/fi';
 import store from './store/store';
 import Sidebar from './components/common/Sidebar';
 import Header from './components/common/Header';
 import LogInteractionScreen from './components/LogInteraction/LogInteractionScreen';
+import Dashboard from './components/Dashboard/Dashboard';
+import HCPDirectory from './components/HCPDirectory/HCPDirectory';
+import Analytics from './components/Analytics/Analytics';
 import { useTheme } from './hooks/useTheme';
 import './index.css';
 
@@ -25,41 +27,11 @@ function AppContent() {
       case 'log-interaction':
         return <LogInteractionScreen />;
       case 'dashboard':
-        return (
-          <div className="glass-card">
-            <div className="empty-state">
-              <div className="empty-state-icon">
-                <FiBarChart2 size={48} />
-              </div>
-              <h3 className="empty-state-title">Dashboard</h3>
-              <p className="empty-state-text">Dashboard analytics coming soon. Head to "Log Interaction" to get started.</p>
-            </div>
-          </div>
-        );
+        return <Dashboard />;
       case 'hcp-directory':
-        return (
-          <div className="glass-card">
-            <div className="empty-state">
-              <div className="empty-state-icon">
-                <FiUsers size={48} />
-              </div>
-              <h3 className="empty-state-title">HCP Directory</h3>
-              <p className="empty-state-text">Full HCP directory is available through the Log Interaction screen.</p>
-            </div>
-          </div>
-        );
+        return <HCPDirectory />;
       case 'analytics':
-        return (
-          <div className="glass-card">
-            <div className="empty-state">
-              <div className="empty-state-icon">
-                <FiTrendingUp size={48} />
-              </div>
-              <h3 className="empty-state-title">Analytics</h3>
-              <p className="empty-state-text">Interaction analytics and insights coming soon.</p>
-            </div>
-          </div>
-        );
+        return <Analytics />;
       default:
         return <LogInteractionScreen />;
     }
